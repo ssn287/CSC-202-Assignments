@@ -33,14 +33,14 @@ public class RamanujanChudnovsky {
 		}
 	}
 	//sqrt method takes a BigDecimal and returns its square root recursively
-	//   we start with x = n and y = 1,
+	//   we start with x = n, y = 1, e = precision limit
 	public static BigDecimal sqrt(BigDecimal n, BigDecimal x, BigDecimal y, BigDecimal e) {
 		//if the difference between x and y is within the precision limit, the square root is 1 (base case)
 		if(x.subtract(y).compareTo(e) <= 0) {
 			return x;
 		}
 		//otherwise, we get the next root approximation by making the new x the average of x and y,
-		//   then we set y = n / x and continue until an exact root is found or maximum precision is achieved
+		//   then we set y = n / x and continue until an exact root is found or we reach the precision limit
 		else {
 			x = x.add(y).divide(TWO, PREC);
 			y = n.divide(x, PREC);
@@ -59,13 +59,13 @@ public class RamanujanChudnovsky {
 		BigDecimal ram5 = new BigDecimal(396);
 		//if n equals zero (base case) take the inverse of the right side of the formula to find Pi
 		if(bigN.compareTo(ZERO) == 0) {
-			return ONE.divide((fact(FOUR.multiply(bigN)).multiply(ram3.multiply(bigN).add(ram4)))
+			return ONE.divide(fact(FOUR.multiply(bigN)).multiply(ram3.multiply(bigN).add(ram4))
 					.divide(fact(bigN).pow(4).multiply(ram5.pow(4*n)), PREC)
 					.multiply(ram1).divide(ram2, PREC), PREC);
 		}
 		//if n does not equal zero, recursively compute the sum from the right side of the formula
 		else {
-			return (fact(FOUR.multiply(bigN)).multiply(ram3.multiply(bigN).add(ram4)))
+			return fact(FOUR.multiply(bigN)).multiply(ram3.multiply(bigN).add(ram4))
 					.divide(fact(bigN).pow(4).multiply(ram5.pow(4*n)), PREC)
 					.multiply(ram1).divide(ram2, PREC).add(rama(n - 1));
 		}
@@ -85,13 +85,13 @@ public class RamanujanChudnovsky {
 		BigDecimal imp2 = new BigDecimal(327843840);
 		//if n equals zero (base case) take the inverse of the right side of the formula to find Pi
 		if(bigN.compareTo(ZERO) == 0) {
-			return ONE.divide((NEG1.pow(n).multiply(fact(SIX.multiply(bigN)).multiply(chu3.add(chu4.multiply(bigN)))))
+			return ONE.divide(NEG1.pow(n).multiply(fact(SIX.multiply(bigN)).multiply(chu3.add(chu4.multiply(bigN))))
 					.divide(fact(bigN).pow(3).multiply(fact(THREE.multiply(bigN)).multiply((EIGHT.multiply(imp1).multiply(imp2)).pow(n))), PREC)
 					.divide(chu1.multiply(chu2), PREC), PREC);
 		}
 		//if n does not equal zero, recursively compute the sum from the right side of the formula
 		else {
-			return (NEG1.pow(n).multiply(fact(SIX.multiply(bigN)).multiply(chu3.add(chu4.multiply(bigN)))))
+			return NEG1.pow(n).multiply(fact(SIX.multiply(bigN)).multiply(chu3.add(chu4.multiply(bigN))))
 					.divide(fact(bigN).pow(3).multiply(fact(THREE.multiply(bigN)).multiply((EIGHT.multiply(imp1).multiply(imp2)).pow(n))), PREC)
 					.divide(chu1.multiply(chu2), PREC).add(chud(n - 1));
 		}
