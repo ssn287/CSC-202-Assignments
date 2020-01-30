@@ -13,7 +13,7 @@ public class RamanujanChudnovsky {
 	//set precision to avoid non-terminating decimal expansion (maximum number of significant digits)
 	private static final MathContext PREC = new MathContext(1000);
 	//set precision for square root algorithm
-	private static final BigDecimal SQRT_PREC = new BigDecimal(0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001);
+	private static final BigDecimal SQRT_PREC = new BigDecimal(0.000000000000000000000000000001);
 	//initialize common constants
 	private static final BigDecimal NEG1 = new BigDecimal(-1);
 	private static final BigDecimal ZERO = BigDecimal.ZERO;
