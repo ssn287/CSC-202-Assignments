@@ -58,7 +58,7 @@ public class RamanujanChudnovsky {
 		BigDecimal ram4 = new BigDecimal(1103);
 		BigDecimal ram5 = new BigDecimal(396);
 		//if n equals zero (base case) take the inverse of the right side of the formula to find Pi
-		if(bigN.compareTo(ZERO) == 0) {
+		if(n == 0) {
 			return ONE.divide(fact(FOUR.multiply(bigN)).multiply(ram3.multiply(bigN).add(ram4))
 					.divide(fact(bigN).pow(4).multiply(ram5.pow(4*n)), PREC)
 					.multiply(ram1).divide(ram2, PREC), PREC);
@@ -84,7 +84,7 @@ public class RamanujanChudnovsky {
 		BigDecimal imp1 = new BigDecimal(100100025);
 		BigDecimal imp2 = new BigDecimal(327843840);
 		//if n equals zero (base case) take the inverse of the right side of the formula to find Pi
-		if(bigN.compareTo(ZERO) == 0) {
+		if(n == 0) {
 			return ONE.divide(NEG1.pow(n).multiply(fact(SIX.multiply(bigN)).multiply(chu3.add(chu4.multiply(bigN))))
 					.divide(fact(bigN).pow(3).multiply(fact(THREE.multiply(bigN)).multiply((EIGHT.multiply(imp1).multiply(imp2)).pow(n))), PREC)
 					.divide(chu1.multiply(chu2), PREC), PREC);
