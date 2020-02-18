@@ -29,20 +29,6 @@ public class ChocolateDistribution {
 			}
 		}
 	}
-	//findMax method finds the largest element from a given array recursively
-	public static int findMax(int[] a, int n, int i) {
-		if(i >= a.length) {
-			return n;
-		}
-		else {
-			if(a[i] > n) {
-				return findMax(a, a[i], ++i);
-			}
-			else {
-				return findMax(a, n, ++i);
-			}
-		}
-	}
 	/**
 	 * chocolate method implements the following algorithm recursively:
 	 *    Given an array of n integers where each value represents number of chocolates in a packet:
@@ -84,6 +70,6 @@ public class ChocolateDistribution {
 		System.out.println(Arrays.toString(arr) + " (Unsorted Packets)");
 		bubbleSort(arr);
 		System.out.println(Arrays.toString(arr) + " (Sorted Packets)");
-		System.out.println(chocolate(arr, STUD, findMax(arr, arr[0], 0), 0, 0));
+		System.out.println(chocolate(arr, STUD, arr[SIZE - 1], 0, 0));
 	}
 }
