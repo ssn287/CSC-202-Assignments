@@ -78,7 +78,7 @@ public class ChocolateDistribution {
 	public static void main(String[] args) {
 		//set number of packets and number of students
 		final int SIZE = 17;
-		final int STUD = 7;
+		final int STUD = 4;
 		int[] arr = new int[SIZE];
 		readArray(arr, 0);
 		System.out.println(Arrays.toString(arr) + " (Unsorted Packets)");
