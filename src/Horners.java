@@ -32,7 +32,7 @@ public class Horners {
 			curr.next = prev; // prev moved to next
 			return head;
 		}
-		Node temp = curr.next; // temp var used to save next node for recursive call
+		Node temp = curr.next; // temp used to save next node for recursive call
 		curr.next = prev; // prev moved to next
 		reverse(temp, curr);
 		return head;
@@ -47,20 +47,27 @@ public class Horners {
 	}
 	//insertNode method inserts a new node at the tail of a linked list
 	public void insertNode(int d) {
-		//create a new Node
-		Node newNode = new Node(d);
-		//check if the list is empty
-		if(head == null) {
+		Node newNode = new Node(d); // create a new node
+		if(head == null) { // check if the list is empty
 			head = newNode;
 			tail = newNode;
 		}
-		else {
-			//if list is not empty, tail and head will point to newNode
+		else { // if the list is not empty, tail and head will point to new node
 			tail.next = newNode;
 			tail = newNode;
 		}
 	}
-	//display method prints the linked list coefficient inputs in polynomial form
+	public void insertNode(Node node) { // same method as above with node as parameter
+		if(head == null) {
+			head = node;
+			tail = node;
+		}
+		else {
+			tail.next = node;
+			tail = node;
+		}
+	}
+	//display method prints the linked list coefficients in polynomial form
 	public void display() {
 		Node current = head; int exp = 0;
 		if(head == null) {
@@ -110,15 +117,22 @@ public class Horners {
 		}
 		return r;
 	}
+	// function that adds two integers (part 2)
+	public static Node addNodes(Node a, Node b) { // function takes two node pointers as arguments
+		Node newNode = new Node(a.data + b.data);
+		System.out.println("\t\t" + a.data + " + " + b.data + " = " + (a.data + b.data)); // sum is printed for user
+		return newNode; // functions returns node and adds to list
+	}
 	public static void main(String[] args) {
 		Horners slist = new Horners(); // initialize empty linked list
-		int num; int x; Scanner kybd = new Scanner(System.in);
+		int num; int x; int a; int b; Node ptr; Node y; Node z; Scanner kybd = new Scanner(System.in);
 		while(true) { // program runs until user selects 0 to exit program
 			int choice = Integer.parseInt(JOptionPane.showInputDialog("\n\tMake a Selection from the following: "
 					+ "\n\t\t1 to Insert Coefficient"
 					+ "\n\t\t2 to Print the Polynomial"
 					+ "\n\t\t3 to Solve the Polynomial Recursively (Linked List)"
 					+ "\n\t\t4 to Solve the Polynomial Iteratively (Array)"
+					+ "\n\t\t5 to Add Two Nodes to Make a New Node" // part 2 of assignment
 					+ "\n\t\t0 to Exit Program"));
 			switch(choice) {
 			case 1:
@@ -141,11 +155,35 @@ public class Horners {
 				x = kybd.nextInt();
 				int[] arr = new int[slist.getSize(head)]; // getSize method is called to determine size of array
 				Node current = head;
-				for(int i = arr.length - 1; i >= 0; i--) { // starting at the end and moving to the front so that reversal is unnecessary
+				for(int i = arr.length - 1; i >= 0; i--) { // starting at the end and moving to the front
 					arr[i] = current.data;
 					current = current.next;
 				}
 				System.out.println("\n\tThe Value of the Polynomial is " + horners(arr, x));
+				break;
+			case 5:
+				System.out.println("\n\tWhich Nodes Would You Like to Add? ");
+				slist.display();
+				System.out.println("\n\tEnter the Exponents (e.g. 0, 1) of the Coefficients You Want to Add: ");
+				a = kybd.nextInt(); b = kybd.nextInt(); // user inputs index positions
+				ptr = head; // pointer used to walk through linked list to find a index
+				if(a == 0) y = ptr; // if index is 0, node is stored
+				else {
+					for(int i = 1; i <= a; i++) {
+						ptr = ptr.next;
+					}
+					y = ptr;
+				}
+				ptr = head; // pointer is reset to walk through and find b node
+				if(b == 0) z = ptr;
+				else {
+					for(int i = 1; i <= b; i++) {
+						ptr = ptr.next;
+					}
+					z = ptr;
+				}
+				addNodes(y, z); // nodes are added, sum is printed and stored in different linked list
+				slist.display();
 				break;
 			case 0:
 				System.exit(0);
