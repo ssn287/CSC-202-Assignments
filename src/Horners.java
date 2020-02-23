@@ -121,7 +121,7 @@ public class Horners {
 	public static Node addNodes(Node a, Node b) { // function takes two node pointers as arguments
 		Node newNode = new Node(a.data + b.data);
 		System.out.println("\t\t" + a.data + " + " + b.data + " = " + (a.data + b.data)); // sum is printed for user
-		return newNode; // functions returns node and adds to list
+		return newNode; // functions returns node pointer
 	}
 	public static void main(String[] args) {
 		Horners slist = new Horners(); // initialize empty linked list
@@ -182,7 +182,7 @@ public class Horners {
 					}
 					z = ptr;
 				}
-				addNodes(y, z); // nodes are added, sum is printed and stored in different linked list
+				addNodes(y, z); // nodes are added, sum is printed
 				break;
 			case 0:
 				System.exit(0);
