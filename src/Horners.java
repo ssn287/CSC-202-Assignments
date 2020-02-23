@@ -132,7 +132,7 @@ public class Horners {
 					+ "\n\t\t2 to Print the Polynomial"
 					+ "\n\t\t3 to Solve the Polynomial Recursively (Linked List)"
 					+ "\n\t\t4 to Solve the Polynomial Iteratively (Array)"
-					+ "\n\t\t5 to Add Two Nodes to Make a New Node" // part 2 of assignment
+					+ "\n\t\t5 to Add Two Nodes" // part 2 of assignment
 					+ "\n\t\t0 to Exit Program"));
 			switch(choice) {
 			case 1:
@@ -183,7 +183,6 @@ public class Horners {
 					z = ptr;
 				}
 				addNodes(y, z); // nodes are added, sum is printed and stored in different linked list
-				slist.display();
 				break;
 			case 0:
 				System.exit(0);
