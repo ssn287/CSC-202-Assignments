@@ -57,16 +57,6 @@ public class Horners {
 			tail = newNode;
 		}
 	}
-	public void insertNode(Node node) { // same method as above with node as parameter
-		if(head == null) {
-			head = node;
-			tail = node;
-		}
-		else {
-			tail.next = node;
-			tail = node;
-		}
-	}
 	//display method prints the linked list coefficients in polynomial form
 	public void display() {
 		Node current = head; int exp = 0;
@@ -119,13 +109,31 @@ public class Horners {
 	}
 	// function that adds two integers (part 2)
 	public static Node addNodes(Node a, Node b) { // function takes two node pointers as arguments
-		Node newNode = new Node(a.data + b.data);
-		System.out.println("\t\t" + a.data + " + " + b.data + " = " + (a.data + b.data)); // sum is printed for user
-		return newNode; // functions returns node pointer
+		Node r = null, temp = null;
+		while(a != null || b != null) {
+			int sum = 0;
+			if(a != null) {
+				sum += a.data;
+				a = a.next;
+			}
+			if(b != null) {
+				sum += b.data;
+				b = b.next;
+			}
+			Node node = new Node(sum);
+			if(r != null) {
+				r.next = node;
+				r = r.next;	
+			}
+			else {
+				r = temp = node;
+			}
+		}
+		return temp;
 	}
 	public static void main(String[] args) {
 		Horners slist = new Horners(); // initialize empty linked list
-		int num; int x; int a; int b; Node ptr; Node y; Node z; Scanner kybd = new Scanner(System.in);
+		int num; int x; int a; int b; Scanner kybd = new Scanner(System.in);
 		while(true) { // program runs until user selects 0 to exit program
 			int choice = Integer.parseInt(JOptionPane.showInputDialog("\n\tMake a Selection from the following: "
 					+ "\n\t\t1 to Insert Coefficient"
@@ -162,27 +170,11 @@ public class Horners {
 				System.out.println("\n\tThe Value of the Polynomial is " + horners(arr, x));
 				break;
 			case 5:
-				System.out.println("\n\tWhich Nodes Would You Like to Add? ");
-				slist.display();
-				System.out.println("\n\tEnter the Exponents (e.g. 0, 1) of the Coefficients You Want to Add: ");
-				a = kybd.nextInt(); b = kybd.nextInt(); // user inputs index positions
-				ptr = head; // pointer used to walk through linked list to find a index
-				if(a == 0) y = ptr; // if index is 0, node is stored
-				else {
-					for(int i = 1; i <= a; i++) {
-						ptr = ptr.next;
-					}
-					y = ptr;
-				}
-				ptr = head; // pointer is reset to walk through and find b node
-				if(b == 0) z = ptr;
-				else {
-					for(int i = 1; i <= b; i++) {
-						ptr = ptr.next;
-					}
-					z = ptr;
-				}
-				addNodes(y, z); // nodes are added, sum is printed
+				System.out.println("\n\tPlease Enter the Numbers You Wish to Add: ");
+				a = kybd.nextInt(); b = kybd.nextInt(); // user inputs numbers
+				Node aNode = new Node(a); Node bNode = new Node(b);
+				Node result = addNodes(aNode, bNode);
+				System.out.println(a + " + " + b + " = " + result.data);
 				break;
 			case 0:
 				System.exit(0);
